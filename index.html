@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+    </head>
+
+    <body>
+        <script>
+            function computerPlay() {
+                let randomNumber = Math.floor(Math.random()*3);
+                if (randomNumber == 0) {
+                    return "rock";
+                }
+                else if (randomNumber == 1) {
+                    return "paper"
+                }
+                else return "scissors";
+                }
+
+             function getUserInput () {
+                 return window.prompt("Rock,paper,scissors?", "rock").toLowerCase();
+
+                 
+             }
+
+             function singleRound(playerSelection, computerSelection) {
+                playerSelection = getUserInput();
+                computerSelection = computerPlay();
+                let whoWon = "";
+                let didUserWin = false;
+                let didComputerWin = false;
+                
+                if (playerSelection == "rock" && computerSelection == "paper" || 
+                    playerSelection == "paper" && computerSelection == "scissors" ||
+                    playerSelection == "scissors" && computerSelection == "rock") {
+                    whoWon = `You lose! ${computerSelection} beats ${playerSelection}`;
+                    didComputerWin = true;
+                }
+                else if (playerSelection == computerSelection) {
+                    whoWon = "It's a draw in this round!"
+                }
+
+                else {whoWon = `You won! ${playerSelection} beats ${computerSelection}`;
+                    didUserWin = true;}
+
+                return  [whoWon,didUserWin, didComputerWin];
+                
+             }
+
+             function game (){
+                let numberOfRounds = prompt("How many games do you wish to play?")
+                 let counterPlayer = 0;
+                 let counterComputer = 0;
+                
+                 
+                 
+                 for (var i=0;i<numberOfRounds;i++) {
+                    let result;
+                    result = singleRound();
+                    if (result[1] == true) {
+                        counterPlayer++;
+                        console.log(result[0]);
+                    }
+                    else if (result[2] == true) {
+                        counterComputer++;
+                        console.log(result[0]);
+                    
+                    }
+                    else console.log(result[0]);
+                    
+                 }
+                 if (counterPlayer > counterComputer) {
+                     return `You won the game!`
+                 }
+                 if (counterComputer > counterPlayer) {
+                    return `You lost the game!`;
+                 }
+                 else return `Overall it's a draw!`;
+             }
+
+             console.log(game());
+
+             
+
+             
+            
+
+        </script>
+    </body>
+
+</html>
